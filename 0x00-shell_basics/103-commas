@@ -1,0 +1,12 @@
+#!/bin/bash
+shopt -s nullglob
+files=()
+dirs=()
+for entry in *; do
+    if [[ -d $entry ]]; then
+        dirs+=("$entry/")
+    else
+        files+=("$entry")
+    fi
+done
+( IFS=,; echo "./, ../, ${dirs[*]}, ${files[*]}" )
